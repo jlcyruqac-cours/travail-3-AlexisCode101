@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>{{ page_title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/jquery-ui.min.css') }}">
+</head>
+<body>
+<div id="game_title">
+    <h1 id="app_title">{{ app_title }}</h1>
+</div>
+
+<div id="personnal_info_input_box">
+    <form method="post">
+        <p>Nom:
+            <input type="text" name="last_name_input" required> <br>
+        </p>
+        <p>Prénom:
+            <input type="text" name="first_name_input" required> <br>
+        </p>
+        <p>Date de naissance:
+            <input type="text" name="birthday_date" id="date" required>
+        </p>
+        <input type="submit" id="request_horoscope" value="Voir mon horoscope">
+    </form>
+</div>
+
+<div id="horoscope_display">
+
+</div>
+<img id="question_img" src="{{url_for('static', filename='img/logo.jpg')}}" alt="Image non trouvé"/>
+
+
+<h1>jQuery Example</h1>
+<p><input type=text size=5 name=a> +
+   <input type=text size=5 name=b> =
+   <span id=result>?</span>
+<p><a href=# id=calculate>calculate server side</a>
+
+<script src="{{url_for('static', filename='vendor/jquery-3.4.1.min.js')}}"></script>
+<script src="{{url_for('static', filename='vendor/jquery-ui.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/custom_script.js')}}"></script>
+</body>
+</html>
