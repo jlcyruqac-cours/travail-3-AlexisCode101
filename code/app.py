@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, jsonify
-import hashlib
+from flask import Flask, render_template, request, jsonify, json
+import datetime
 from ssl import SSLContext, PROTOCOL_SSLv23
+from py_scripts.find_astro_sign import find_sign
 
 app = Flask(__name__)
 
@@ -23,12 +24,19 @@ def home():
 #     return jsonify(result=a + b)
 
 @app.route('/horoscope', methods=['GET', 'POST'])
-def test():
-    clicked = None
-    print(request.form)
+def display_horoscope():
+    last_name = request.form['last_name_input']
+    first_name = request.form['first_name_input']
+
+    date = datetime.datetime.strptime(request.form['birthday_date'], "%m/%d/%Y")
+
+    astro_sign = find_sign(date.month, date.day)
+
     # if request.method == "POST":
     #     clicked = request.json['data']
-    return render_template('accueil.html')
+    print('caliss')
+    # return render_template('accueil.html',data='salut', last_name='salut', first_name=first_name, zodiac_sign=astro_sign)
+    return jsonify(astro_sign)
 
 # If page not found, display this html
 @app.errorhandler(404)

@@ -11,7 +11,7 @@
 </div>
 
 <div id="personnal_info_input_box">
-    <form method="post">
+    <form id='horoscope_input' method="post">
         <p>Nom:
             <input type="text" name="last_name_input" required> <br>
         </p>
@@ -24,18 +24,16 @@
         <input type="submit" id="request_horoscope" value="Voir mon horoscope">
     </form>
 </div>
-
+{{ data }}
 <div id="horoscope_display">
-
+    <label id="test"></label>
+{{ last_name }}<br>
+    {{ first_name }}<br>
+    {{ zodiac_sign }}<br>
+    {{ horoscope_msg }}
 </div>
+
 <img id="question_img" src="{{url_for('static', filename='img/logo.jpg')}}" alt="Image non trouvé"/>
-
-
-<h1>jQuery Example</h1>
-<p><input type=text size=5 name=a> +
-   <input type=text size=5 name=b> =
-   <span id=result>?</span>
-<p><a href=# id=calculate>calculate server side</a>
 
 <script src="{{url_for('static', filename='vendor/jquery-3.4.1.min.js')}}"></script>
 <script src="{{url_for('static', filename='vendor/jquery-ui.min.js')}}"></script>
