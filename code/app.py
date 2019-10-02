@@ -25,31 +25,32 @@ def home():
 
 @app.route('/horoscope', methods=['GET', 'POST'])
 def display_horoscope():
-    # print(request.args.get())
-    last_name = request.args.get('last_name_input', 0, type=str)
-    first_name = request.args.get('first_name_input', 0, type=str)
-    birthday_date = request.args.get('birthday_date', 0, type=str)
-    print(last_name)
-    print(first_name)
-    print(birthday_date)
-    date = datetime.datetime.strptime(birthday_date, "%m/%d/%Y")
+    print(request.form)
+    last_name = request.form['last_name_input']
+    first_name = request.form['first_name_input']
+
+    date = datetime.datetime.strptime(request.form['birthday_date'], "%m/%d/%Y")
 
     astro_sign = find_sign(date.month, date.day)
     print(astro_sign)
 
-    return jsonify(result=astro_sign, result2=last_name)
-    # last_name = request.form['last_name_input']
-    # first_name = request.form['first_name_input']
-    #
-    # date = datetime.datetime.strptime(request.form['birthday_date'], "%m/%d/%Y")
+    # if request.method == "POST":
+    #     clicked = request.json['data']
+
+    # return render_template('accueil.html',data='salut', last_name='salut', first_name=first_name, zodiac_sign=astro_sign)
+    return jsonify(astro_sign)
+    # last_name = request.args.get('last_name_input', 0, type=str)
+    # first_name = request.args.get('first_name_input', 0, type=str)
+    # birthday_date = request.args.get('birthday_date', 0, type=str)
+    # print(last_name)
+    # print(first_name)
+    # print(birthday_date)
+    # date = datetime.datetime.strptime(birthday_date, "%m/%d/%Y")
     #
     # astro_sign = find_sign(date.month, date.day)
+    # print(astro_sign)
     #
-    # # if request.method == "POST":
-    # #     clicked = request.json['data']
-    #
-    # # return render_template('accueil.html',data='salut', last_name='salut', first_name=first_name, zodiac_sign=astro_sign)
-    # return jsonify(astro_sign)
+    # return jsonify(result=astro_sign, result2=last_name)
 
 # If page not found, display this html
 @app.errorhandler(404)
