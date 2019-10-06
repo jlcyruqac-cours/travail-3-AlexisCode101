@@ -7,6 +7,10 @@
     margin: 100px 100px 100px 100px;
 }
 
+.input_entry {
+    margin-bottom: 20px;
+}
+
 #password_guess_box {
     width: 1000px;
     border: 5px solid black;
