@@ -1,5 +1,5 @@
 // Used for datepicker
-$( "#date" ).datepicker();
+$( "#birthday_date_input" ).datepicker();
 
 // Used to display horoscope using AJAX
 // $('a#request_horoscope').bind('click', function() {
@@ -11,15 +11,22 @@ $( "#date" ).datepicker();
 //     });
 //     return false;
 // });
-
 $(document).ready(function(){
     $("#request_horoscope").click(function(){
+        last_name_input = $('#last_name_input').val();
+        first_name_input = $('#first_name_input').val();
+        birthday_date_input = $('#birthday_date_input').val();
         $.ajax({
             url : '/horoscope',
             type : 'POST',
-            data : $('#horoscope_input').serialize(),
+            data : {
+                'last_name_input': last_name_input,
+                'first_name_input': first_name_input,
+                'birthday_date': birthday_date_input
+            },
             success: function(result){
-				console.log(result);
+				// $('#horoscope_display').text(result)
+                $(this).html(result)
 			},
 			error: function(error){
 				console.log(error);

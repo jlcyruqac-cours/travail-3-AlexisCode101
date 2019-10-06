@@ -1,27 +1,63 @@
 def find_sign(month,day):
     astro_sign = None
     if month == 12:
-        astro_sign = 'Sagittaire' if (day < 22) else 'capricorne'
+        if (day < 22):
+            astro_sign = 'Sagittaire'
+        else:
+            astro_sign = 'capricorne'
     elif month == 1:
-        astro_sign = 'Capricorne' if (day < 20) else 'Verseau'
+        if (day < 20):
+            astro_sign = 'Capricorne'
+        else:
+            astro_sign = 'Verseau'
     elif month == 2:
-        astro_sign = 'Verseau' if (day < 19) else 'Poissons'
+        if (day < 19):
+            astro_sign = 'Verseau'
+        else:
+            astro_sign = 'Poissons'
     elif month == 3:
-        astro_sign = 'Poissons' if (day < 21) else 'Bélier'
+        if (day < 21):
+            astro_sign = 'Poissons'
+        else:
+            astro_sign = 'Bélier'
     elif month == 4:
-        astro_sign = 'Bélier' if (day < 20) else 'Taureau'
+        if (day < 20):
+            astro_sign = 'Bélier'
+        else:
+            astro_sign = 'Taureau'
     elif month == 5:
-        astro_sign = 'Taureau' if (day < 21) else 'Gémeaux'
+        if (day < 21):
+            astro_sign = 'Taureau'
+        else :
+            astro_sign = 'Gémeaux'
     elif month == 6:
-        astro_sign = 'Gémeaux' if (day < 21) else 'Cancer'
+        if (day < 21):
+            astro_sign = 'Gémeaux'
+        else:
+            astro_sign ='Cancer'
     elif month == 7:
-        astro_sign = 'Cancer' if (day < 23) else 'Lion'
+        if (day < 23):
+            astro_sign = 'Cancer'
+        else:
+            astro_sign = 'Lion'
     elif month == 8:
-        astro_sign = 'Lion' if (day < 23) else 'Vierge'
+        if (day < 23):
+            astro_sign = 'Lion'
+        else:
+            astro_sign = 'Vierge'
     elif month == 9:
-        astro_sign = 'Vierge' if (day < 23) else 'Balance'
+        if (day < 23):
+            astro_sign = 'Vierge'
+        else:
+            astro_sign = 'Balance'
     elif month == 10:
-        astro_sign = 'Balance' if (day < 23) else 'Scorpion'
+        if (day < 23):
+            astro_sign = 'Balance'
+        else:
+            astro_sign = 'Scorpion'
     elif month == 11:
-        astro_sign = 'Scorpion' if (day < 22) else 'Sagittaire'
+        if (day < 22):
+            astro_sign = 'Scorpion'
+        else:
+            astro_sign = 'Sagittaire'
     return astro_sign

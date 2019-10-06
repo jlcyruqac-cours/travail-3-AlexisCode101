@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
     <title>{{ page_title }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/vendor/jquery-ui.min.css">
 </head>
 <body>
 <div id="game_title">
@@ -11,32 +11,31 @@
 </div>
 
 <div id="personnal_info_input_box">
-    <form id='horoscope_input' method="post">
         <p>Nom:
-            <input type="text" name="last_name_input" required> <br>
+            <input id="last_name_input" type="text"> <br>
         </p>
         <p>Prénom:
-            <input type="text" name="first_name_input" required> <br>
+            <input id="first_name_input" type="text"> <br>
         </p>
         <p>Date de naissance:
-            <input type="text" name="birthday_date" id="date" required>
+            <input id="birthday_date_input" type="text">
         </p>
-        <button id="request_horoscope" value="Voir mon horoscope"></button>
-    </form>
+        <button type="button" id="request_horoscope" class="ui-button">Voir mon horoscope</button>
 </div>
 <div id="horoscope_display">
-    <span id="astro_sign_id"></span> <br>
-    <span id="last_name"></span>
-{{ last_name }}<br>
-    {{ first_name }}<br>
-    {{ zodiac_sign }}<br>
-    {{ horoscope_msg }}
+<h3>{{ status }}</h3>
+
+{{ astro_sign }}
+
 </div>
 
-<img id="question_img" src="{{url_for('static', filename='img/logo.jpg')}}" alt="Image non trouvé"/>
+<div>
+    <img id="question_img" src="static/img/logo.jpg" alt="Image non trouvé"/>
+</div>
 
-<script src="{{url_for('static', filename='vendor/jquery-3.4.1.min.js')}}"></script>
-<script src="{{url_for('static', filename='vendor/jquery-ui.min.js')}}"></script>
-<script src="{{url_for('static', filename='js/custom_script.js')}}"></script>
+
+<script src="static/vendor/jquery-3.4.1.min.js"></script>
+<script src="static/vendor/jquery-ui.min.js"></script>
+<script src="static/js/custom_script.js"></script>
 </body>
 </html>

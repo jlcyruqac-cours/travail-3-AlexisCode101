@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request, jsonify, json
+from flask import Flask, render_template, request, jsonify, json, flash
 import datetime
 from ssl import SSLContext, PROTOCOL_SSLv23
 from py_scripts.find_astro_sign import find_sign
+
+import re
 
 app = Flask(__name__)
 
@@ -23,22 +25,44 @@ def home():
 #     b = request.args.get('b', 0, type=int)
 #     return jsonify(result=a + b)
 
-@app.route('/horoscope', methods=['GET', 'POST'])
+@app.route('/horoscope', methods=['POST'])
 def display_horoscope():
-    print(request.form)
     last_name = request.form['last_name_input']
     first_name = request.form['first_name_input']
+    birthday_date = request.form['birthday_date']
+    status = ''
 
-    date = datetime.datetime.strptime(request.form['birthday_date'], "%m/%d/%Y")
+    check_date = re.match('(\d{2})[/.-](\d{2})[/.-](\d{4})$',birthday_date)
 
+    # Validate input
+    if last_name == '':
+        status += 'Il manque le nom de famille \n'
+
+    if first_name == '':
+        status += 'Il manque le prénom \n'
+
+    if birthday_date == '':
+        status += 'Il manque la date de naissance \n'
+
+    if not check_date:
+        status += 'Veuillez entrer une date sous la forme mm/dd/yyyy'
+
+    print(status)
+    if status:
+        return render_template('horoscope_display.html', status=status)
+
+    date = datetime.datetime.strptime(birthday_date, "%m/%d/%Y")
+
+    print(last_name)
+    print(first_name)
+    print(date)
+
+    #
     astro_sign = find_sign(date.month, date.day)
     print(astro_sign)
 
-    # if request.method == "POST":
-    #     clicked = request.json['data']
-
-    # return render_template('accueil.html',data='salut', last_name='salut', first_name=first_name, zodiac_sign=astro_sign)
-    return jsonify(astro_sign)
+    return render_template('horoscope_splay.html', astro_sign=astro_sign)
+    # return jsonify(astro_sign)
     # last_name = request.args.get('last_name_input', 0, type=str)
     # first_name = request.args.get('first_name_input', 0, type=str)
     # birthday_date = request.args.get('birthday_date', 0, type=str)
@@ -61,4 +85,5 @@ def page_not_found(e):
 if __name__ == '__main__':
     context = SSLContext(PROTOCOL_SSLv23)
     context.load_cert_chain('./SSL.crt', './SSL.key')
-    app.run(host='127.0.0.1', debug=True, port=8080, ssl_context=context)
+    app.run(host='127.0.0.1', debug=True, port=8080)
+    # app.run()
