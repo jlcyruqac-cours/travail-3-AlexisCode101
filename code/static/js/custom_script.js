@@ -1,4 +1,4 @@
-// Used for datepicker birthdate input
+// Used for datepicker birth date input
 $( "#birthday_date_input" ).datepicker();
 
 // Ajax function to process input
@@ -26,11 +26,11 @@ $(document).ready(function(){
     });
 });
 
+// Erase input value when button reset is clicked
 $(document).ready(function () {
     $("#reset_input").click(function(){
         $('#last_name_input').val('');
         $('#first_name_input').val('');
         $('#birthday_date_input').val('');
     })
-
 })
